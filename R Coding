@@ -1,27 +1,32 @@
-
+# makecachematrix is a variable name
+# using the function called matrix 
+# to build matrix
 makeCacheMatrix <- function(x = matrix()) {
 
   inv <- NULL
-  set <- function(y) {
+  setting <- function(y) {
     x <<- y
     inv <<- NULL
   }
-  get <- function() x
-  setinverse <- function(inverse) inv <<- inverse
-  getinverse <- function() inv
-  list(set = set, get = get,
-       setinverse = setinverse,
-       getinverse = getinverse)
+  # use getted variable name
+  # to save the defiened function
+  getted <- function() x
+  inversed <- function(inverse) inv <<- inverse
+  getinversed <- function() inv
+  list(setting = setting, getted = getted,
+       inversed = inversed,
+       getinversed = getinversed)
 }
-cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
-  inv <- x$getinverse()
+# use cachesolve variable 
+# to save the function which is defiened
+Solved <- function(x, ...) {
+inv <- x$getinversed()
   if(!is.null(inv)) {
     message("getting cached matrix inverse")
     return(inv)
   }
-  data <- x$get()
+  data <- x$getted()
   inv <- solve(data, ...)
-  x$setinverse(inv)
+  x$inversed(inv)
   inv
 }
